@@ -1,12 +1,22 @@
 import React from 'react'
-import GlobalStyle from '../../../globalStyle'
+import { auth, provider } from '../../../config/firebase'
 import Header from '../../Header'
 
 function WrapperApp (props) {
   const { Component, pageProps } = props
+
+  const handleLogin = () => {
+    auth
+      .signInWithPopup(provider)
+      .then(result => {
+        console.log({ result })
+      })
+      .catch(err => console.log(err))
+  }
+
   return (
     <>
-      <Header />
+      <Header handleLogin={handleLogin} />
       <Component {...pageProps} />
     </>
   )

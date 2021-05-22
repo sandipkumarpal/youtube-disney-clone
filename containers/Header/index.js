@@ -5,16 +5,13 @@ import Link from 'next/link'
 import styled from 'styled-components'
 
 const Header = props => {
-  const {} = props
+  const { handleLogin } = props
   return (
     <Nav>
       <Logo>
         <Image width='100' height='50' src='/images/logo.svg' alt='Disney+' />
       </Logo>
-      <Login href='/login'>
-        <span>Login</span>
-      </Login>
-      {/*<NavMenu>
+      <NavMenu>
         <Link href='/home'>
           <a>
             <Image
@@ -81,7 +78,10 @@ const Header = props => {
             <span>SERIES</span>
           </a>
         </Link>
-      </NavMenu>*/}
+      </NavMenu>
+      <Login onClick={handleLogin}>
+        <span>Login</span>
+      </Login>
       {/*<SignOut>
         <UserImg src={userPhoto} alt={userName} />
         <DropDown>
