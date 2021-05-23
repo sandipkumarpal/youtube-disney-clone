@@ -1,93 +1,101 @@
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import styled from 'styled-components'
 
 const Header = props => {
-  const { handleLogin } = props
+  const user = useSelector(state => state.user)
+  const { name, email, pic } = user
+  const { handleLogin, handleLogout } = props
   return (
     <Nav>
       <Logo>
         <Image width='100' height='50' src='/images/logo.svg' alt='Disney+' />
       </Logo>
-      <NavMenu>
-        <Link href='/home'>
-          <a>
-            <Image
-              width='24'
-              height='24'
-              src='/images/home-icon.svg'
-              alt='HOME'
-            />
-            <span>HOME</span>
-          </a>
-        </Link>
-        <Link href='/search'>
-          <a>
-            <Image
-              width='24'
-              height='24'
-              src='/images/search-icon.svg'
-              alt='SEARCH'
-            />
-            <span>SEARCH</span>
-          </a>
-        </Link>
-        <Link href='/watchlist'>
-          <a>
-            <Image
-              width='24'
-              height='24'
-              src='/images/watchlist-icon.svg'
-              alt='WATCHLIST'
-            />
-            <span>WATCHLIST</span>
-          </a>
-        </Link>
-        <Link href='/orginals'>
-          <a>
-            <Image
-              width='24'
-              height='24'
-              src='/images/original-icon.svg'
-              alt='ORIGINALS'
-            />
-            <span>ORIGINALS</span>
-          </a>
-        </Link>
-        <Link href='/movies'>
-          <a>
-            <Image
-              width='24'
-              height='24'
-              src='/images/movie-icon.svg'
-              alt='MOVIES'
-            />
-            <span>MOVIES</span>
-          </a>
-        </Link>
-        <Link href='/series'>
-          <a>
-            <Image
-              width='24'
-              height='24'
-              src='/images/series-icon.svg'
-              alt='SERIES'
-            />
-            <span>SERIES</span>
-          </a>
-        </Link>
-      </NavMenu>
-      <Login onClick={handleLogin}>
-        <span>Login</span>
-      </Login>
-      {/*<SignOut>
-        <UserImg src={userPhoto} alt={userName} />
-        <DropDown>
-          <span onClick={()}>Sign out</span>
-  </DropDown>
-      </SignOut> */}
+      {!name ? (
+        <Login onClick={handleLogin}>
+          <span>Login</span>
+        </Login>
+      ) : (
+        <>
+          <NavMenu>
+            <Link href='/home'>
+              <a>
+                <Image
+                  width='24'
+                  height='24'
+                  src='/images/home-icon.svg'
+                  alt='HOME'
+                />
+                <span>HOME</span>
+              </a>
+            </Link>
+            <Link href='/search'>
+              <a>
+                <Image
+                  width='24'
+                  height='24'
+                  src='/images/search-icon.svg'
+                  alt='SEARCH'
+                />
+                <span>SEARCH</span>
+              </a>
+            </Link>
+            <Link href='/watchlist'>
+              <a>
+                <Image
+                  width='24'
+                  height='24'
+                  src='/images/watchlist-icon.svg'
+                  alt='WATCHLIST'
+                />
+                <span>WATCHLIST</span>
+              </a>
+            </Link>
+            <Link href='/orginals'>
+              <a>
+                <Image
+                  width='24'
+                  height='24'
+                  src='/images/original-icon.svg'
+                  alt='ORIGINALS'
+                />
+                <span>ORIGINALS</span>
+              </a>
+            </Link>
+            <Link href='/movies'>
+              <a>
+                <Image
+                  width='24'
+                  height='24'
+                  src='/images/movie-icon.svg'
+                  alt='MOVIES'
+                />
+                <span>MOVIES</span>
+              </a>
+            </Link>
+            <Link href='/series'>
+              <a>
+                <Image
+                  width='24'
+                  height='24'
+                  src='/images/series-icon.svg'
+                  alt='SERIES'
+                />
+                <span>SERIES</span>
+              </a>
+            </Link>
+          </NavMenu>
+          <SignOut>
+            <UserImg src={pic} alt={name} />
+            <DropDown>
+              <span onClick={handleLogout}>Sign out</span>
+            </DropDown>
+          </SignOut>
+        </>
+      )}
     </Nav>
   )
 }
@@ -194,7 +202,7 @@ const Login = styled.a`
   border: 1px solid #f9f9f9;
   border-radius: 4px;
   transition: all 0.2s ease 0s;
-
+  cursor: pointer;
   &:hover {
     background-color: #f9f9f9;
     color: #000;
