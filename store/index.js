@@ -1,10 +1,12 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import userReducer from '../store/features/user'
+import movieReducer from '../store/features/movie'
 
 export const store = configureStore({
   reducer: {
     // ...initialState,
-    user: userReducer
+    user: userReducer,
+    movie: movieReducer
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false

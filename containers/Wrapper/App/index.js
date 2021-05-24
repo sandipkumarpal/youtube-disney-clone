@@ -34,7 +34,7 @@ function WrapperApp (props) {
     auth.onAuthStateChanged(async user => {
       if (!!user) {
         dispatch(setUserSignIn(user))
-        router.push('/')
+        // router.push('/')
       }
     })
   }, [])

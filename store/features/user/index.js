@@ -14,7 +14,7 @@ export const userSlice = createSlice({
         email,
         pic: photoURL
       }
-      state = { ...userData }
+      state = { ...state, ...userData }
       return state
     },
     setUserSignOut: state => {

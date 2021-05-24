@@ -1,20 +1,19 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
-// import { selectOriginal } from '../features/movie/movieSlice'
 
 const Originals = props => {
-  const movies = [] // useSelector(selectOriginal)
+  const { orginal: orginalData } = useSelector(state => state.movie)
 
   return (
     <Container>
       <h4>Originals</h4>
       <Content>
-        {movies &&
-          movies.map((movie, key) => (
+        {orginalData &&
+          orginalData.map((movie, key) => (
             <Wrap key={key}>
               {movie.id}
-              <Link to={`/detail/` + movie.id}>
+              <Link href={`/detail/` + movie.id}>
                 <img src={movie.cardImg} alt={movie.title} />
               </Link>
             </Wrap>
